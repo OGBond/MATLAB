@@ -15,10 +15,13 @@ function sol = FDDirichlet(f,N,a,b,A,B)
     bVals(1) = A;           % sets u(x(0)) = A
     bVals(N) = B;           % sets u(x(N)) = B
     
-    for i = 1:N + 1
-        fVals(i) = f(a + i*dx);
-                            % evaluates values of f(x) over [a,b]
-    end
+%     for i = 1:N + 1
+%         fVals(i) = f(a + i*dx);
+%                             % evaluates values of f(x) over [a,b]
+%     end
+    fVals = f(xVals);
+    fVals(1,1)=A; % sets u(x(0)) = A
+    fVals(end,1)=B; % sets u(x(0)) = B
     
     FirstRowOfD2 = [-2, 1, zeros(1, N - 1)]; 
     % creates a typical row to be put into the matrix so that central
