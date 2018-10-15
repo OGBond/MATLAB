@@ -33,8 +33,11 @@ function sol = FDDirichlet(f,N,a,b,A,B)
     % on diagonals are constants, ie. where D2(i,j) = D2(i+1,j+1) for all i,j
     
     D2(1,1) = 1;      % Changes first row to create an equation u_0 = A
+    D2(1,2) = 0;
     D2(N+1,N+1) = 1;  % Changes final row to create an equation u_N = B
     D2 = D2/dx^2;      % Divides by h^2 (as in central difference formula)
+    
+    keyboard
     
     sol = D2\fVals;   % Solves the matrix equation D2*u = f for u
     plot(xVals,sol)   % Creates a plot of the solution
